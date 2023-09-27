@@ -25,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
     String status = null;
     boolean operator = false;
 
-
-
     DecimalFormat myFormatter = new DecimalFormat("######.######");
 
     String history, currentResult;
 
     boolean dot = true;
 
+    boolean btnACcontrol = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 textViewHistory.setText("");
                 firstNumber = 0;
                 lastNumber = 0;
-
                 dot = true;
+                btnACcontrol = true;
             }
         });
 
@@ -158,8 +157,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                number = number.substring(0,number.length()-1);
-                textViewResult.setText(number);
+                if (btnACcontrol)
+                {
+                    textViewResult.setText("0");
+                }
+                else {
+                    number = number.substring(0,number.length()-1);
+
+                    if (number.length() == 0){
+                        btnDel.setClickable(false);
+                    } else if (number.contains(".")) {
+                        dot = false;
+                        
+                    }
+                    else {
+                        dot = true;
+                    }
+                    textViewResult.setText(number);
+
+                }
 
             }
         });
@@ -353,6 +369,8 @@ public class MainActivity extends AppCompatActivity {
 
         textViewResult.setText(number);
         operator = true;
+        btnACcontrol = false;
+        btnDel.setClickable(true);
     }
 
     public  void plus()
