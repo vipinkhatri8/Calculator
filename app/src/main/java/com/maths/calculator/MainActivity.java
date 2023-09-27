@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     boolean dot = true;
 
     boolean btnACcontrol = true;
+    boolean btnEqualsControl = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 operator = false;
 
+                btnEqualsControl = true;
 
             }
         });
@@ -361,8 +363,12 @@ public class MainActivity extends AppCompatActivity {
         if(number == null)
         {
             number = view;
-        }
-        else
+        } else if (btnEqualsControl) {
+            firstNumber = 0;
+            lastNumber = 0;
+            number = view;
+            
+        } else
         {
             number = number + view;
         }
@@ -371,6 +377,7 @@ public class MainActivity extends AppCompatActivity {
         operator = true;
         btnACcontrol = false;
         btnDel.setClickable(true);
+        btnEqualsControl = false;
     }
 
     public  void plus()
