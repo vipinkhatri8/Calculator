@@ -441,8 +441,3 @@ public class MainActivity extends AppCompatActivity {
         dot = true;
     }
 }
-
-
-
-
-
