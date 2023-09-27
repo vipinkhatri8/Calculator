@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     String history, currentResult;
 
-
+    boolean dot = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 firstNumber = 0;
                 lastNumber = 0;
 
+                dot = true;
             }
         });
 
@@ -321,15 +322,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (number == null)
-                {
-                    number = "0.";
+                if (dot){
+                    if (number == null)
+                    {
+                        number = "0.";
+                    }
+
+                    else {
+                        number = number + ".";
+                    }
                 }
 
-                else {
-                    number = number + ".";
-                }
                 textViewResult.setText(number);
+                dot = false;
             }
         });
 
@@ -355,6 +360,7 @@ public class MainActivity extends AppCompatActivity {
         lastNumber = Double.parseDouble(textViewResult.getText().toString());
         firstNumber = firstNumber + lastNumber;
         textViewResult.setText(myFormatter.format(firstNumber));
+        dot = true;
     }
 
     public  void minus()
@@ -370,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         textViewResult.setText(myFormatter.format(firstNumber));
+        dot = true;
     }
 
 
@@ -389,6 +396,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         textViewResult.setText(myFormatter.format(firstNumber));
+        dot = true;
 
     }
     public  void divide()
@@ -405,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
             firstNumber = firstNumber / lastNumber;
         }
         textViewResult.setText(myFormatter.format(firstNumber));
+        dot = true;
     }
 }
 
